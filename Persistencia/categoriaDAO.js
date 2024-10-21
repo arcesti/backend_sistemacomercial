@@ -1,4 +1,4 @@
-import Categoria from "../Modelo/categoria";
+import Categoria from "../Modelo/categoria.js";
 import conectar from "./Conexao.js"
 export default class CategoriaDAO {
 

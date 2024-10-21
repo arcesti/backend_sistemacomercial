@@ -189,7 +189,7 @@ export default class ProdutoCtrl{
                 resposta.status(500).json(
                     {
                         "status":false,
-                        "mensagem":"Erro ao consultar produtos"    
+                        "mensagem":"Erro ao consultar produtos " + erro
                     }
                 );
             });

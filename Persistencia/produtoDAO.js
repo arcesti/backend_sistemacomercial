@@ -85,7 +85,7 @@ export default class ProdutoDAO {
         }
         else {
             sql = `SELECT * FROM produto p
-                   INNER JOIN categoria c ON p.cod_cat = c.prod_codigo
+                   INNER JOIN categoria c ON p.cod_cat = c.codigo
                    WHERE prod_codigo = ?`
             parametros = [termo];
         }
