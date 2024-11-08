@@ -15,5 +15,3 @@ rotaProduto.get("/:codigo", prodCtrl.consultar);
 rotaProduto.get("/",prodCtrl.consultar);
 
 export default rotaProduto;
-
-

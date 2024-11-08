@@ -42,7 +42,7 @@ export default class Categoria{
         await catDAO.gravar(this); //this referência a si mesmo
     }
 
-    async consultar(){
+    async consultar(codigo){
         const catDAO = new CategoriaDAO();
         return await catDAO.consultar(termo);
     }
