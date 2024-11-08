@@ -7,6 +7,7 @@
 //não esqueça de atualizar o arquivo package.json adicionando a chave "type":"module"
 import express from 'express';
 import rotaProduto from './Rotas/rotaProdutos.js';
+import rotaCategoria from './Rotas/rotaCategorias.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
