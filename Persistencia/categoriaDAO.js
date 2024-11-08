@@ -41,7 +41,7 @@ export default class CategoriaDAO {
         if (categoria instanceof Categoria) {
             const conexao = await conectar();
             const sql = `
-                UPDATE categoria SET descricao WHERE codigo = ?
+                UPDATE categoria SET descricao=? WHERE codigo = ?
             `;
             const parametros = [categoria.descricao,categoria.codigo];
             await conexao.execute(sql, parametros);
