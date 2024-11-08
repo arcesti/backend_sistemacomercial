@@ -91,7 +91,7 @@ export default class CategoriaCtrl {
             const catDescr = req.body.descricao
             const codigo = req.params.codigo
             console.log("TO AQUI 1")
-            if (novaCat) {
+            if (catDescr) {
                 const cat = new Categoria(codigo, catDescr)
                 console.log("TO AQUI 2")
                 cat.editar()
