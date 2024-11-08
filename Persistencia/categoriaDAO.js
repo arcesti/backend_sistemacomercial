@@ -43,7 +43,7 @@ export default class CategoriaDAO {
             const sql = `
                 UPDATE categoria SET descricao WHERE codigo = ?
             `;
-            const parametros = [categoria.codigo];
+            const parametros = [categoria.descricao,categoria.codigo];
             await conexao.execute(sql, parametros);
             await conexao.release();
         }
