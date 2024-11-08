@@ -61,12 +61,18 @@ export default class CategoriaDAO {
         }
     }
 
-    async consultar() {
+    async consultar(codigo) {
         const conexao = await conectar();
-        const sql = `
-                SELECT * FROM categoria WHERE ORDER BY descricao
+        let sql = ""
+        if (codigo === "") {
+            sql = `
+                SELECT * FROM categoria ORDER BY descricao
             `;
-        const [registro, campos] = await conexao.query(sql);
+        }
+        else {
+            sql = `SELECT * FROM categoria WHERE codigo = ?`
+        }
+        let [registro, campos] = await conexao.query(sql, codigo)
         let listaCategorias = [];
         registro.map((reg) => {
             const categoria = new Categoria(reg['codigo'], reg['descricao']);
