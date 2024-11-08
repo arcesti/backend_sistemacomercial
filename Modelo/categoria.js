@@ -54,7 +54,7 @@ export default class Categoria{
 
     async editar(){
         const catDAO = new CategoriaDAO();
-        await catDAO.alterar(this);
+        await catDAO.editar(this);
     }
 }
 
