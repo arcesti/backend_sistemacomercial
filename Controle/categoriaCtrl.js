@@ -90,8 +90,10 @@ export default class CategoriaCtrl {
         if (req.method === 'PUT') {
             const catDescr = req.body.descricao
             const codigo = req.params.codigo
+            console.log("TO AQUI 1")
             if (novaCat) {
                 const cat = new Categoria(codigo, catDescr)
+                console.log("TO AQUI 2")
                 cat.editar()
                     .then(() => res.status(200).json({ "Categoria atualizada": cat }))
                     .catch((err) => res.status(500).json({ "message": "Erro ao atualizar categoria: " + err.message }))
