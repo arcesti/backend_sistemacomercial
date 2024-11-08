@@ -9,20 +9,21 @@ export default class ProdutoCtrl{
         //Verificando se o método da requisição é POST e conteúdo é JSON
         if (requisicao.method == 'POST' && requisicao.is("application/json")){
             const descricao  = requisicao.body.descricao;
-            const precoCusto = requisicao.body.precoCusto;
-            const precoVenda = requisicao.body.precoVenda;
-            const qtdEstoque = requisicao.body.qtdEstoque;
-            const urlImagem  = requisicao.body.urlImagem;
-            const dataValidade = requisicao.body.dataValidade;
+            const preCusto = requisicao.body.preCusto;
+            const preVenda = requisicao.body.preVenda;
+            const estq = requisicao.body.estq;
+            const urlImg  = requisicao.body.urlImg;
+            const dtValidade = requisicao.body.dtValidade;
+            const codCat = requisicao.body.categoria.codigo
             //pseudo validação
-            if (descricao && precoCusto > 0 &&
-                precoVenda > 0 && qtdEstoque >= 0 &&
-                urlImagem && dataValidade)
+            if (descricao && preCusto > 0 &&
+                preVenda > 0 && estq >= 0 &&
+                urlImg && dtValidade)
             {
                 //gravar o produto
                 const produto = new Produto(0,
-                    descricao, precoCusto, precoVenda,
-                    qtdEstoque,urlImagem,dataValidade);
+                    descricao, preCusto, preVenda,
+                    estq,urlImg,dtValidade,codCat);
                 
                 produto.incluir()
                 .then(()=>{
@@ -69,20 +70,20 @@ export default class ProdutoCtrl{
             //o código será extraída da URL (padrão REST)
             const codigo     = requisicao.params.codigo;
             const descricao  = requisicao.body.descricao;
-            const precoCusto = requisicao.body.precoCusto;
-            const precoVenda = requisicao.body.precoVenda;
-            const qtdEstoque = requisicao.body.qtdEstoque;
-            const urlImagem  = requisicao.body.urlImagem;
-            const dataValidade = requisicao.body.dataValidade;
+            const preCusto = requisicao.body.preCusto;
+            const preVenda = requisicao.body.preVenda;
+            const estq = requisicao.body.estq;
+            const urlImg  = requisicao.body.urlImg;
+            const dtValidade = requisicao.body.dtValidade;
             //pseudo validação
-            if (codigo > 0 && descricao && precoCusto > 0 &&
-                precoVenda > 0 && qtdEstoque >= 0 &&
-                urlImagem && dataValidade)
+            if (codigo > 0 && descricao && preCusto > 0 &&
+                preVenda > 0 && estq >= 0 &&
+                urlImg && dtValidade)
             {
                 //alterar o produto
                 const produto = new Produto(codigo,
-                    descricao, precoCusto, precoVenda,
-                    qtdEstoque,urlImagem,dataValidade);
+                    descricao, preCusto, preVenda,
+                    estq,urlImg,dtValidade);
                 produto.alterar()
                 .then(()=>{
                     resposta.status(200).json({
