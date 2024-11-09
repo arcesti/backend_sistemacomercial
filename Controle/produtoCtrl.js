@@ -14,6 +14,7 @@ export default class ProdutoCtrl{
             const estq = requisicao.body.estq;
             const urlImg  = requisicao.body.urlImg;
             const dtValidade = requisicao.body.dtValidade;
+            dtValidade = dtValidade.toLocal
             const categoria = requisicao.body.categoria;
             //pseudo validação
             if (descricao && preCusto > 0 &&
@@ -61,12 +62,13 @@ export default class ProdutoCtrl{
         }
 
     }
+    
 
     editar(requisicao, resposta){
         //preparar o destinatário que a resposta estará no formato JSON
         resposta.type("application/json");
         //Verificando se o método da requisição é POST e conteúdo é JSON
-        if ((requisicao.method == 'PUT' || requisicao.method == 'PATCH') && requisicao.is("application/json")){
+        if ((requisicao.method == 'PUT' || requisicao.method == 'PATCH')){
             //o código será extraída da URL (padrão REST)
             const codigo     = requisicao.params.codigo;
             const descricao  = requisicao.body.descricao;
@@ -75,7 +77,7 @@ export default class ProdutoCtrl{
             const estq = requisicao.body.estq;
             const urlImg  = requisicao.body.urlImg;
             const dtValidade = requisicao.body.dtValidade;
-            const {categoria} = requisicao.categoria;
+            const categoria = requisicao.body.categoria;
             //pseudo validação
             if (codigo > 0 && descricao && preCusto > 0 &&
                 preVenda > 0 && estq >= 0 &&
