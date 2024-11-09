@@ -7,7 +7,7 @@ export default class ProdutoCtrl{
         //preparar o destinatário que a resposta estará no formato JSON
         resposta.type("application/json");
         //Verificando se o método da requisição é POST e conteúdo é JSON
-        if (requisicao.method == 'POST' && requisicao.is("application/json")){
+        if (requisicao.method == 'POST'){
             const descricao  = requisicao.body.descricao;
             const preCusto = requisicao.body.preCusto;
             const preVenda = requisicao.body.preVenda;
