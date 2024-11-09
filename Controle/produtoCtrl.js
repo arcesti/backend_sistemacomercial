@@ -75,6 +75,7 @@ export default class ProdutoCtrl{
             const estq = requisicao.body.estq;
             const urlImg  = requisicao.body.urlImg;
             const dtValidade = requisicao.body.dtValidade;
+            const {categoria} = requisicao.categoria;
             //pseudo validação
             if (codigo > 0 && descricao && preCusto > 0 &&
                 preVenda > 0 && estq >= 0 &&
