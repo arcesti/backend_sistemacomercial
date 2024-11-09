@@ -14,7 +14,7 @@ export default class ProdutoCtrl{
             const estq = requisicao.body.estq;
             const urlImg  = requisicao.body.urlImg;
             const dtValidade = requisicao.body.dtValidade;
-            const codCat = requisicao.body.categoria.codigo
+            const {categoria} = requisicao.body.categoria
             //pseudo validação
             if (descricao && preCusto > 0 &&
                 preVenda > 0 && estq >= 0 &&
@@ -23,7 +23,7 @@ export default class ProdutoCtrl{
                 //gravar o produto
                 const produto = new Produto(0,
                     descricao, preCusto, preVenda,
-                    estq,urlImg,dtValidade,codCat);
+                    estq,urlImg,dtValidade,categoria);
                 
                 produto.incluir()
                 .then(()=>{
@@ -84,7 +84,7 @@ export default class ProdutoCtrl{
                 //alterar o produto
                 const produto = new Produto(codigo,
                     descricao, preCusto, preVenda,
-                    estq,urlImg,dtValidade);
+                    estq,urlImg,dtValidade, categoria);
                 produto.alterar()
                 .then(()=>{
                     resposta.status(200).json({
