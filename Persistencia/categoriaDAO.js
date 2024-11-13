@@ -80,5 +80,4 @@ export default class CategoriaDAO {
         })
         return listaCategorias;
     }
-
 }
