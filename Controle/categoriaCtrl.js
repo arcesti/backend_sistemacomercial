@@ -1,5 +1,4 @@
 import Categoria from "../Modelo/categoria.js";
-import conectar from "../Persistencia/Conexao.js";
 
 export default class CategoriaCtrl {
     gravar(req, res) {
