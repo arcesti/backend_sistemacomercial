@@ -52,13 +52,11 @@ export default class CategoriaDAO {
     async excluir(categoria) {
         if (categoria instanceof Categoria) {
             const conexao = await conectar();
-            const [produtos, campos] = await conexao.query("SELECT * FROM produto", "");
-            const temProd = produtos.map((prod) => {
-                if (prod.categoria.codigo === categoria.codigo) {
-                    return true;
-                }
-            })
-            if (!temProd) {
+            const [produtos] = await conexao.query(
+                "SELECT * FROM produto WHERE categoria_id = ?",
+                [categoria.codigo]
+            );
+            if (produtos.length === 0) {
                 const sql = `
                     DELETE FROM categoria WHERE codigo = ?
                 `;
@@ -67,10 +65,8 @@ export default class CategoriaDAO {
                 await conexao.release();
                 return true;
             }
-            else {
-                await conexao.release();
-                return false;
-            }
+            await conexao.release();
+            return false;
         }
     }
 
