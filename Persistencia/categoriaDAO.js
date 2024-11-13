@@ -52,7 +52,7 @@ export default class CategoriaDAO {
     async excluir(categoria) {
         if (categoria instanceof Categoria) {
             const conexao = await conectar();
-            const [produtos] = await conexao.query(
+            const [produtos] = await conexao.execute(
                 "SELECT * FROM produto WHERE categoria_id = ?",
                 [categoria.codigo]
             );
