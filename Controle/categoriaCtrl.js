@@ -62,17 +62,10 @@ export default class CategoriaCtrl {
             if (codigo > 0) {
                 const cat = new Categoria(codigo)
                 cat.excluir()
-                    .then((excluir) => {
-                        if (!excluir) {
-                            res.status(400).json({
-                                "message": "Não foi possível realizar a exclusão, já existe um produto cadastrado com esta categoria"
-                            })
-                        }
-                        else {
-                            res.status(200).json({
-                                "message": `Categoria codigo: ${codigo} excluida com sucesso`
-                            })
-                        }
+                    .then(() => {
+                        res.status(200).json({
+                            "message": `Categoria codigo: ${codigo} excluida com sucesso`
+                        })
                     })
                     .catch((err) => {
                         res.status(500).json({

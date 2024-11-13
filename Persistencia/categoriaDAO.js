@@ -52,9 +52,9 @@ export default class CategoriaDAO {
     async excluir(categoria) {
         if (categoria instanceof Categoria) {
             const conexao = await conectar();
-            const [produtos] = await conexao.execute(
-                "SELECT * FROM produto WHERE categoria_id = ?",
-                [categoria.codigo]
+            const [produtos, campos] = await conexao.query(
+                "SELECT * FROM produto WHERE cod_cat = ?",
+                categoria.codigo
             );
             if (produtos.length === 0) {
                 const sql = `
@@ -63,10 +63,8 @@ export default class CategoriaDAO {
                 const parametros = [categoria.codigo];
                 await conexao.execute(sql, parametros);
                 await conexao.release();
-                return true;
             }
             await conexao.release();
-            return false;
         }
     }
 
