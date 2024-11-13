@@ -43,7 +43,7 @@ export default class CategoriaDAO {
             const sql = `
                 UPDATE categoria SET descricao=? WHERE codigo = ?
             `;
-            const parametros = [categoria.descricao,categoria.codigo];
+            const parametros = [categoria.descricao, categoria.codigo];
             await conexao.execute(sql, parametros);
             await conexao.release();
         }
@@ -52,12 +52,25 @@ export default class CategoriaDAO {
     async excluir(categoria) {
         if (categoria instanceof Categoria) {
             const conexao = await conectar();
-            const sql = `
-                DELETE FROM categoria WHERE codigo = ?
-            `;
-            const parametros = [categoria.codigo];
-            await conexao.execute(sql, parametros);
-            await conexao.release();
+            const produtos = await conexao.execute("SELECT * FROM produto");
+            const temProd = produtos.map((prod) => {
+                if (prod.categoria.codigo === categoria.codigo) {
+                    return true;
+                }
+            })
+            if (!temProd) {
+                const sql = `
+                    DELETE FROM categoria WHERE codigo = ?
+                `;
+                const parametros = [categoria.codigo];
+                await conexao.execute(sql, parametros);
+                await conexao.release();
+                return true;
+            }
+            else {
+                await conexao.release();
+                return false;
+            }
         }
     }
 
