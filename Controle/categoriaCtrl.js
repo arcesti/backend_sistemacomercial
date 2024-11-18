@@ -95,7 +95,7 @@ export default class CategoriaCtrl {
                 const cat = new Categoria(codigo, catDescr)
                 console.log("TO AQUI 2")
                 cat.editar()
-                    .then(() => res.status(200).json({ "Categoria atualizada": cat }))
+                    .then(() => res.status(200).json({ cat }))
                     .catch((err) => res.status(500).json({ "message": "Erro ao atualizar categoria: " + err.message }))
             }
             else {
